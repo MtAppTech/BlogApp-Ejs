@@ -99,9 +99,13 @@
           <% }) %>
 
           <!-- Pagination -->
+          <%= console.log(details) %>
           <nav class="blog-pagination" aria-label="Pagination">
-            <a class="btn btn-outline-primary rounded-pill" href="#">1</a>
-            <a class="btn btn-outline-secondary rounded-pill">2</a>
+            
+            <% for( let pageNo = 1; pageNo <= details?.pages.total; pageNo++ ) { %>
+              <a class="btn btn-outline-primary rounded-pill" href="/post?page=<%= pageNo %>"><%= pageNo %></a>
+            <% } %>
+            
           </nav>
           <p class="text-end p-2 border-top">Total 5 Posts</p>
         </div>
@@ -131,57 +135,7 @@
                      
                     <% }) %>
                 </li>
-                <!-- <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="/post/:id"
-                  >
-                    <div class="col-lg-8">
-                      <h5>Sample Blog Post</h5>
-                      <p class="my-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit...
-                      </p>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="/post/:id"
-                  >
-                    <div class="col-lg-8">
-                      <h5>Sample Blog Post</h5>
-                      <p class="my-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit...
-                      </p>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-                    href="/post/:id"
-                  >
-                    <div class="col-lg-8">
-                      <h5>Sample Blog Post</h5>
-                      <p class="my-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit...
-                      </p>
-                      <small class="text-body-secondary"
-                        >January 15, 2023</small
-                      >
-                    </div>
-                  </a>
-                </li> -->
+                
               </ul>
             </div>
           </div>

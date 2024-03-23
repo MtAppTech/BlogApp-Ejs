@@ -123,6 +123,7 @@ module.exports.BlogPost = {
             categories,
             selectedCategory: req?.query?.filter?.blogCategoryId,
             recentPosts,
+            details: await res.getModelListDetails(BlogPost),
 
         })
         /*
