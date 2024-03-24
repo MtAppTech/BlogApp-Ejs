@@ -99,15 +99,17 @@
           <% }) %>
 
           <!-- Pagination -->
-          <%= console.log(details) %>
+          <%= console.log(pageUrl) %>
           <nav class="blog-pagination" aria-label="Pagination">
             
             <% for( let pageNo = 1; pageNo <= details?.pages.total; pageNo++ ) { %>
-              <a class="btn btn-outline-primary rounded-pill" href="/post?page=<%= pageNo %>"><%= pageNo %></a>
+              
+              <a class="btn btn-<%= (details.pages.current == pageNo ? 'primary' : 'outline-primary')  %> rounded-pill" href="<%= pageUrl %>&page=<%= pageNo %>"><%= pageNo %></a>
+
             <% } %>
             
           </nav>
-          <p class="text-end p-2 border-top">Total 5 Posts</p>
+          <p class="text-end p-2 border-top">Total <%= details.totalRecords %> Posts</p>
         </div>
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem">

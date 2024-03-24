@@ -17,6 +17,7 @@ module.exports.BlogCategory = {
 
     // GET
     list: async (req, res) => {
+       // console.log(req)
 
         // const data = await BlogCategory.find()
         const data = await res.getModelList(BlogCategory)
@@ -90,6 +91,7 @@ module.exports.BlogPost = {
 
     list: async (req, res) => {
         const data = await res.getModelList(BlogPost, 'blogCategoryId')
+        console.log(req)
 
         // res.status(200).send({
         //     error: false,
@@ -99,7 +101,7 @@ module.exports.BlogPost = {
         console.log(req.query.filter)
         const categories = await BlogCategory.find();
         const recentPosts = await BlogPost.find().sort({createdAt: 'desc'}).limit(3);
-        console.log(req.url)
+        console.log('basla'+req.url)
         // res.render('index')
         if(req.url.includes('?')){
             if(req.url.includes('page=')) {
@@ -118,12 +120,14 @@ module.exports.BlogPost = {
         //    pageUrl: req.url
         // })
 
+        console.log('deneme'+req.url)
         res.render('index',{
             posts : data,
             categories,
             selectedCategory: req?.query?.filter?.blogCategoryId,
             recentPosts,
             details: await res.getModelListDetails(BlogPost),
+            pageUrl: req.url
 
         })
         /*
