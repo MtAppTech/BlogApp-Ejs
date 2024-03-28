@@ -125,14 +125,26 @@ module.exports.BlogPost = {
 
   create: async (req, res) => {
     //
-    const data = await BlogPost.create(req.body);
-    // console.log('*****');
-    // console.log(req.body);
-    res.status(200).send({
-      error: false,
-      body: req.body,
-      data: data,
-    });
+
+    if (req.method == "POST") {
+      const data = await BlogPost.create(req.body);
+      // console.log('*****');
+      // console.log(req.body);
+      /*
+      res.status(200).send({
+        error: false,
+        body: req.body,
+        data: data,
+      });
+      */
+
+      res.redirect("/post/" + data._id);
+    } else {
+      res.render("postForm", {
+        categories: await BlogCategory.find(),
+        post : null
+      });
+    }
   },
   read: async (req, res) => {
     //
