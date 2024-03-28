@@ -164,7 +164,7 @@ module.exports.BlogPost = {
         data: data,
       });
       */
-      res.render("/post" + req.params.postId);
+      res.redirect("/post/" + req.params.postId);
     } else {
       res.render("postForm", {
         categories: await BlogCategory.find(),
