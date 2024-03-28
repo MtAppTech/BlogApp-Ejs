@@ -142,7 +142,8 @@ module.exports.BlogPost = {
     } else {
       res.render("postForm", {
         categories: await BlogCategory.find(),
-        post : null
+        post : null,
+        title : 'New Post'
       });
     }
   },
@@ -183,6 +184,7 @@ module.exports.BlogPost = {
         post: await BlogPost.findOne({ _id: req.params.postId }).populate(
           "blogCategoryId"
         ),
+        title : 'Update Post'
       });
     }
   },
