@@ -65,6 +65,12 @@ const BlogPostSchema = new mongoose.Schema(
             ref: 'BlogCategory',
             required: true,
         },
+        userId:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User', //ModelName
+            required: true
+
+        },
 
         title: {
             type: String,
