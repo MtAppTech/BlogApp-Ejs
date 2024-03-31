@@ -112,7 +112,7 @@ module.exports.BlogPost = {
     //    details: await res.getModelListDetails(BlogPost),
     //    pageUrl: req.url
     // })
-
+    console.log(req.session)
     res.render("postList", {
       posts: data,
       categories,
@@ -120,6 +120,7 @@ module.exports.BlogPost = {
       recentPosts,
       details: await res.getModelListDetails(BlogPost),
       pageUrl: req.url,
+      user : req.session?.user
     });
   },
 
@@ -143,7 +144,8 @@ module.exports.BlogPost = {
       res.render("postForm", {
         categories: await BlogCategory.find(),
         post : null,
-        title : 'New Post'
+        title : 'New Post',
+        user : req.session?.user
       });
     }
   },
@@ -161,6 +163,7 @@ module.exports.BlogPost = {
 
     res.render("postRead", {
       post: data,
+      user : req.session?.user
     });
   },
   update: async (req, res) => {
@@ -173,7 +176,7 @@ module.exports.BlogPost = {
       console.log(req.method);
       /*
       res.status(200).send({
-        error: false,
+        error: false,   
         data: data,
       });
       */
@@ -184,7 +187,8 @@ module.exports.BlogPost = {
         post: await BlogPost.findOne({ _id: req.params.postId }).populate(
           "blogCategoryId"
         ),
-        title : 'Update Post'
+        title : 'Update Post',
+        user : req.session?.user
       });
     }
   },
