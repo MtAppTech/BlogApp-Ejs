@@ -1,8 +1,9 @@
 <%- include('partials/head') %>
-<title>MtAppTech - Detail</title>
+<title>MtAppTech- Detail</title>
 </head>
 <body>
     <div class="container">
+        <%#- include('partials/header',{user}) %>
         <%- include('partials/header') %>
     </div>
 <!-- main start -->
@@ -10,19 +11,23 @@
     <div class="row g-5">
         <div class="col-md-12 p-3">
             <!-- BlogPost Read -->
-            <div class="admin-area text-end">
-                <a class="btn btn-sm btn-primary" href="/post/<%= post.id %>/update">Update</a>
-                <a class="btn btn-sm btn-danger" href="/post/<%= post.id %>/delete" onclick="return confirm('Are you sure?')">Delete</a>
-                Published: <%= post.published %>
-            </div>
-            <article class="blog-post">
+            <% if (user) { %>
+                <div class="admin-area text-end">
+                    <a class="btn btn-sm btn-primary" href="/post/<%= post.id %>/update">Update</a>
+                    <a class="btn btn-sm btn-danger" href="/post/<%= post.id %>/delete" onclick="return confirm('Are you sure?')">Delete</a>
+                    Published: <%= post.published %>
+                </div>
+            <% } %>
+            <article class="blog-post w-100">
                 <a href="/post?filter[blogCategoryId]=<%= post.blogCategoryId._id %>"># <%= post.blogCategoryId.name %></a>
                 <h2 class="display-5 mb-1">
                     <a href="/post/:id" class="link-body-emphasis text-decoration-none"><%= post.title %></a>
                 </h2>
 
                 <p class="blog-post-meta"><%= post.createdAt.toLocaleString() %></p>
+               <div class="w-100 text-break">
                 <%- post.content %>
+               </div>
             </article>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <%- include('partials/head') %>
-<title>MtAppTech- Posts</title>
+<title>MtAppTech - Posts</title>
 </head>
 <body>
     <div class="container">
@@ -9,9 +9,11 @@
     <main class="container">
         <div class="row g-5">
           <div class="col-md-8">
-            <div class="admin-area text-end">
-              <a class="btn btn-primary" href="/post/create">New Post</a>
-            </div>
+            <% if (user) { %>
+              <div class="admin-area text-end">
+                <a class="btn btn-primary" href="/post/create">New Post</a>
+              </div>
+            <% } %>
             <h3 class="pb-4 fst-italic border-bottom">
               Welcome to my blog site.
             </h3>
@@ -30,17 +32,19 @@
                               <%#- post.content %>
                           </div> -->
               <%- post.content.substring(0,500) %> ...
-              <div class="admin-area text-end">
-                <a class="btn btn-sm btn-primary" href="/post/<%= post.id %>/update"
-                  >Update</a
-                >
-                <a
-                  class="btn btn-sm btn-danger"
-                  href="/post/<%= post.id %>/delete"
-                  onclick="return confirm('Are you sure?')"
-                  >Delete</a
-                >
-              </div>
+              <% if (user) { %>
+                <div class="admin-area text-end">
+                  <a class="btn btn-sm btn-primary" href="/post/<%= post.id %>/update"
+                    >Update</a
+                  >
+                  <a
+                    class="btn btn-sm btn-danger"
+                    href="/post/<%= post.id %>/delete"
+                    onclick="return confirm('Are you sure?')"
+                    >Delete</a
+                  >
+                </div>
+              <% } %>
             </article>
             <% }) %>
 
