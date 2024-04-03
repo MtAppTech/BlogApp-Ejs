@@ -6,6 +6,7 @@ BLOG api project
 cp .env-sample .env
 npm install
 npm install ejs
+npm i tinymce
 
 */
 const express = require("express")
@@ -44,6 +45,9 @@ app.use(express.urlencoded({extended:true}));
 // Static Files
 app.use('/assets', express.static('./public/assets'));
 //* /assets uzantısı görürsen bunun için public klasöründeki assetse erişim sağla.
+
+//for tinymce
+app.use('/libs',express.static('./node_modules'));
 
 /* ------------------------------------------------------- */
 // Filtering, Searching, Sorting, Pagination
